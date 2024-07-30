@@ -57,6 +57,6 @@ jobs:
                 resource-group: ${{ env.CLUSTER_RESOURCE_GROUP }}
                 use-kubelogin: "true"
             - name: Build Helm dependencies
-              run: helm dependency build    
+              run: helm dependency build ${{ env.CHART_PATH }}
             - name: Deploy application
               run: helm upgrade --wait -i -f ${{ env.CHART_OVERRIDE_PATH }} --set ${{ env.CHART_OVERRIDES }} automated-deployment ${{ env.CHART_PATH }}

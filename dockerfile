@@ -1,1 +1,1 @@
-FROM python:latest
+FROM sonarqube:10.6.0-community

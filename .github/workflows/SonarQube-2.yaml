@@ -64,5 +64,12 @@ jobs:
 
             - name: Build Helm dependencies
               run: helm dependency build ${{ env.CHART_PATH }}
+            - name: test k8s
+              run: kubectl get all -n sonarqube
+              
             - name: Deploy application
-              run: helm upgrade --wait --timeout 15m0s -i -f ${{ env.CHART_OVERRIDE_PATH }} --set ${{ env.CHART_OVERRIDES }} automated-deployment ${{ env.CHART_PATH }}
+              run: helm upgrade -i -f ${{ env.CHART_OVERRIDE_PATH }} --set ${{ env.CHART_OVERRIDES }} automated-deployment ${{ env.CHART_PATH }}
+
+            - name: test k8s
+              run: kubectl get all -n sonarqube
+              
